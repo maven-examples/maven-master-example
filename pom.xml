@@ -16,7 +16,7 @@
         <repository>
             <id>github</id>
             <name>Maven Master Example</name>
-            <url>https://maven.pkg.github.com/maven-examples/maven-master-example.git</url>
+            <url>https://maven.pkg.github.com/maven-examples</url>
         </repository>
     </distributionManagement>
 </project>
