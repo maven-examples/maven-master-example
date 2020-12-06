@@ -14,7 +14,7 @@
     </scm>
     <distributionManagement>
         <repository>
-            <id>my id</id>
+            <id>github</id>
             <name>Maven Master Example</name>
             <url>https://maven.pkg.github.com/maven-examples/maven-master-example.git</url>
         </repository>
