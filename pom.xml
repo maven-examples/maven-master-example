@@ -10,6 +10,13 @@
         <url>https://github.com/maven-examples/maven-master-example</url>
         <connection>scm:git:git@github.com:maven-examples/maven-master-example.git</connection>
         <developerConnection>scm:git:git@github.com:maven-examples/maven-master-example.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>my id</id>
+            <name>Maven Master Example</name>
+            <url>https://maven.pkg.github.com/maven-examples/maven-master-example.git</url>
+        </repository>
+    </distributionManagement>
 </project>
