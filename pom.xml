@@ -8,5 +8,9 @@
     <artifactId>maven-master-example</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <scm>
+        <url>https://github.com/maven-examples/maven-master-example</url>
+        <connection>scm:git:git@github.com:maven-examples/maven-master-example.git</connection>
+        <developerConnection>scm:git:git@github.com:maven-examples/maven-master-example.git</developerConnection>
+    </scm>
 </project>
