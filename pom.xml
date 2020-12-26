@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>org.marcuschiu</groupId>
     <artifactId>maven-master-example</artifactId>
     <version>1.6-SNAPSHOT</version>
 
@@ -19,4 +19,210 @@
             <url>https://maven.pkg.github.com/maven-examples</url>
         </repository>
     </distributionManagement>
+
+    <build>
+        <!-- executing `mvn` becomes `mvn package` -->
+        <defaultGoal>package</defaultGoal>
+        <!-- the build's target -->
+        <directory>${basedir}/target</directory>
+        <!-- name of the bundled project when it is finally built
+             (sans the file extension, for example: my-project-1.0.jar) -->
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <!-- Defines *.properties files that contain a list of properties
+             that apply to resources which accept their settings (covered below).
+             In other words, the "name=value" pairs defined within the
+             filter files replace ${name} strings within resources on build.
+             The example above defines the filter1.properties file under the
+             filters/ directory. Maven's default filter directory is ${basedir}/src/main/filters/ -->
+<!--        <filters>-->
+<!--            <filter>filters/filter1.properties</filter>-->
+<!--        </filters>-->
+        <resources>
+            <!-- see: https://maven.apache.org/pom.html#resources -->
+        </resources>
+        <testResources>
+            <!-- see: https://maven.apache.org/pom.html#resources -->
+        </testResources>
+        <!-- see: https://maven.apache.org/pom.html#plugins -->
+        <plugins>
+            <!-- the below plugin would inherit from <pluginManagement> -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- the below plugin would execute during `verify` phase with `mvn verify` -->
+                <!-- this would output [INFO] - maven-antrun-plugin:1.1:run (echodir) @ maven-master-example -->
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.1</version>
+                    <executions>
+                        <execution>
+                            <id>echodir</id>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <phase>verify</phase>
+                            <inherited>false</inherited>
+                            <configuration>
+                                <tasks>
+                                    <echo>Build Dir: ${project.build.directory}</echo>
+                                </tasks>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <!-- Build Element Set - those missing in profile build -->
+        <!-- this includes:
+             - *Directories
+             - extensions
+        -->
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory> <!-- obsolete -->
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <outputDirectory>${basedir}/target/classes</outputDirectory>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+
+        <!-- Extensions - are a list of artifacts used in build -->
+        <extensions>
+            <!-- see: https://maven.apache.org/pom.html#extensions -->
+        </extensions>
+    </build>
+    <reporting>
+        <!-- see: https://maven.apache.org/pom.html#reporting -->
+        <outputDirectory>${basedir}/target/site</outputDirectory>
+        <plugins>
+            <plugin>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.0.1</version>
+                <reportSets>
+                    <reportSet></reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <!-- https://maven.apache.org/pom.html#repositories -->
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+            <name>Nexus Snapshots</name>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+    </pluginRepositories>
+
+    <!-- https://maven.apache.org/pom.html#profiles -->
+    <profiles>
+        <profile>
+            <id>profile-id</id>
+            <activation></activation>
+            <build></build>
+            <modules></modules>
+            <repositories></repositories>
+            <pluginRepositories></pluginRepositories>
+            <dependencies></dependencies>
+            <reporting></reporting>
+            <dependencyManagement></dependencyManagement>
+            <distributionManagement></distributionManagement>
+        </profile>
+    </profiles>
+
+    <!-- More Project Information -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <organization>
+        <name>Codehaus Mojo</name>
+        <url>http://mojo.codehaus.org</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>jdoe</id>
+            <name>John Doe</name>
+            <email>jdoe@example.com</email>
+            <url>http://www.example.com/jdoe</url>
+            <organization>ACME</organization>
+            <organizationUrl>http://www.example.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>America/New_York</timezone>
+            <properties>
+                <picUrl>http://www.example.com/jdoe/pic</picUrl>
+            </properties>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor>
+            <name>Noelle</name>
+            <email>some.name@gmail.com</email>
+            <url>http://noellemarie.com</url>
+            <organization>Noelle Marie</organization>
+            <organizationUrl>http://noellemarie.com</organizationUrl>
+            <roles>
+                <role>tester</role>
+            </roles>
+            <timezone>America/Vancouver</timezone>
+            <properties>
+                <gtalk>some.name@gmail.com</gtalk>
+            </properties>
+        </contributor>
+    </contributors>
+    <issueManagement>
+        <system>Bugzilla</system>
+        <url>http://127.0.0.1/bugzilla/</url>
+    </issueManagement>
+    <ciManagement>
+        <system>continuum</system>
+        <url>http://127.0.0.1:8080/continuum</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+                <configuration><address>continuum@127.0.0.1</address></configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+    <mailingLists>
+        <mailingList>
+            <name>User List</name>
+            <subscribe>user-subscribe@127.0.0.1</subscribe>
+            <unsubscribe>user-unsubscribe@127.0.0.1</unsubscribe>
+            <post>user@127.0.0.1</post>
+            <archive>http://127.0.0.1/user/</archive>
+            <otherArchives>
+                <otherArchive>http://base.google.com/base/1/127.0.0.1</otherArchive>
+            </otherArchives>
+        </mailingList>
+    </mailingLists>
+    <!-- prerequisites used only for maven-plugin projects -->
+<!--    <prerequisites>-->
+<!--        <maven>2.0.6</maven>-->
+<!--    </prerequisites>-->
 </project>

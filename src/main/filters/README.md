@@ -1,0 +1,1 @@
+used in the pom.xml's default build.filters section
