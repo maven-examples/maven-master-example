@@ -4,13 +4,13 @@
 
     <groupId>org.marcuschiu</groupId>
     <artifactId>maven-master-example</artifactId>
-    <version>1.6</version>
+    <version>1.6-SNAPSHOT</version>
 
     <scm>
         <url>https://github.com/maven-examples/maven-master-example</url>
         <connection>scm:git:git@github.com:maven-examples/maven-master-example.git</connection>
         <developerConnection>scm:git:git@github.com:maven-examples/maven-master-example.git</developerConnection>
-        <tag>maven-master-example-1.6</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
@@ -100,7 +100,7 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.0.1</version>
                 <reportSets>
-                    <reportSet />
+                    <reportSet></reportSet>
                 </reportSets>
             </plugin>
         </plugins>
@@ -132,15 +132,15 @@
     <profiles>
         <profile>
             <id>profile-id-a</id>
-            <activation />
-            <build />
-            <modules />
-            <repositories />
-            <pluginRepositories />
-            <dependencies />
-            <reporting />
-            <dependencyManagement />
-            <distributionManagement />
+            <activation></activation>
+            <build></build>
+            <modules></modules>
+            <repositories></repositories>
+            <pluginRepositories></pluginRepositories>
+            <dependencies></dependencies>
+            <reporting></reporting>
+            <dependencyManagement></dependencyManagement>
+            <distributionManagement></distributionManagement>
         </profile>
         <!-- profile activation - https://maven.apache.org/pom.html#activation -->
         <profile>
